@@ -27,7 +27,7 @@ public class Database {
             int i = 0;
             while( i < userArrayList.size()) {
                 user = userArrayList.get(i);
-                save_data = user.getFirstname() + ", " + user.getLastname();
+                save_data = user.getFirstname() + ", " + user.getLastname()+ ", " + user.getID()+ ", " + user.getDepartment();
                 i++;
             }
             bufferedWriter.write(save_data);

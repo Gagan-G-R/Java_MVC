@@ -10,7 +10,7 @@ public class UserDetails extends JPanel {
     // Table for user data
     private JTable userTable;
     // table column
-    private String[] userTableColumn = {"FIRST NAME", "LAST NAME"};
+    private String[] userTableColumn = {"FIRST NAME", "LAST NAME","ID","DEPARTMENT"};
 
     // back button
     private JButton backButton;
@@ -37,6 +37,7 @@ public class UserDetails extends JPanel {
         DefaultTableModel defaultTableModel = (DefaultTableModel) userTable.getModel();
         defaultTableModel.setColumnIdentifiers(userTableColumn);
         int i = 0;
+        defaultTableModel.getDataVector().removeAllElements();
         while(i < objects.length) {
             String row = objects[i].toString().trim();
             String[] rows = row.split(",");

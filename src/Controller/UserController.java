@@ -10,7 +10,7 @@ import java.io.File;
 
 public class UserController {
     // database file
-    private String databaseFile = "src\\data\\database.txt";
+    private String databaseFile = "src/data/database.txt";
     private Database database;
     private Form form;
     private UserDetails userDetails;
@@ -24,6 +24,8 @@ public class UserController {
         this.form.submitUsers(e -> {
             String firstname = this.form.getFirstname().trim();
             String lastname = this.form.getLastname().trim();
+            String id = this.form.getID().trim();
+            String department = this.form.getDepartment().trim();
 
             // simple validations
             if(firstname.isEmpty()) {
@@ -34,9 +36,17 @@ public class UserController {
                 JOptionPane.showMessageDialog(this.form, "Last Name Required.", "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
+            }else if(id.isEmpty()) {
+                JOptionPane.showMessageDialog(this.form, "Last Name Required.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }else if(department.isEmpty()) {
+                JOptionPane.showMessageDialog(this.form, "Last Name Required.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
             }
             
-            this.database.addUser(new User(firstname, lastname));
+            this.database.addUser(new User(firstname, lastname,id,department));
             this.database.saveUser(new File(databaseFile));
             this.form.reset(true);
         });

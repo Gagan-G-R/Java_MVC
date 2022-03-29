@@ -28,9 +28,7 @@ public class MainFrame extends JFrame {
         form.viewUsers(e -> cardLayout.show(MainFrame.this.getContentPane(), "user details"));
         userDetails.backButton(e -> cardLayout.show(MainFrame.this.getContentPane(), "form"));
 
-        // icon for our application
-        ImageIcon imageIcon = new ImageIcon("src/assets/appicon.png");
-        setIconImage(imageIcon.getImage());
+        
         // frame width & height
         int FRAME_WIDTH = 1200;
         int FRAME_HEIGHT = 700;

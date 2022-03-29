@@ -8,6 +8,8 @@ public class Form extends JPanel {
 
     private JTextField firstnameField;
     private JTextField lastNameField;
+    private JTextField idField;
+    private JTextField departmentField;
 
     private JButton addButton;
     private JButton viewButton;
@@ -16,9 +18,13 @@ public class Form extends JPanel {
 
         JLabel firstnameLabel = new JLabel("First Name: ");
         JLabel lastnameLabel = new JLabel("Last Name: ");
+        JLabel idLabel = new JLabel("ID: ");
+        JLabel departmentLabel = new JLabel("Department: ");
 
         firstnameField = new JTextField(25);
         lastNameField = new JTextField(25);
+        idField = new JTextField(25);
+        departmentField = new JTextField(25);
 
         addButton = new JButton("Add User");
         addButton.setPreferredSize(new Dimension(278, 40));
@@ -57,15 +63,40 @@ public class Form extends JPanel {
         gridBagConstraints.gridy = 3;
 
         add(lastNameField, gridBagConstraints);
+        //
 
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+
+        add(idLabel, gridBagConstraints);
+
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+
+        add(idField, gridBagConstraints);
+        //
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+
+        add(departmentLabel, gridBagConstraints);
+
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+
+        add(departmentField, gridBagConstraints);
+        //
+
+
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.insets = buttonInset;
 
         add(addButton, gridBagConstraints);
 
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.insets = buttonInset;
 
         add(viewButton, gridBagConstraints);
@@ -78,6 +109,14 @@ public class Form extends JPanel {
 
     public String getLastname() {
         return lastNameField.getText();
+    }
+
+    public String getID() {
+        return idField.getText();
+    }
+
+    public String getDepartment() {
+        return departmentField.getText();
     }
 
     public void submitUsers(ActionListener actionListener) {
@@ -93,6 +132,8 @@ public class Form extends JPanel {
         if(bln) {
             firstnameField.setText("");
             lastNameField.setText("");
+            idField.setText("");
+            departmentField.setText("");
         }
     }
 }
