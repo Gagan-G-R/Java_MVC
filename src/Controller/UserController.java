@@ -10,7 +10,7 @@ import java.io.File;
 
 public class UserController {
     // database file
-    private String databaseFile = "src/data/database.txt";
+    private String databaseFile = "/home/gagan/git/Java_MVC/src/data/database.txt";
     private Database database;
     private Form form;
     private UserDetails userDetails;

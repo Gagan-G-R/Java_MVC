@@ -1,5 +1,5 @@
 package Model;
-
+import java.sql.*;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -9,6 +9,7 @@ public class Database {
 
     public Database() {
         userArrayList = new ArrayList<>();
+        
     }
 
     // adds user to our collection
@@ -29,6 +30,16 @@ public class Database {
                 user = userArrayList.get(i);
                 save_data = user.getFirstname() + ", " + user.getLastname()+ ", " + user.getID()+ ", " + user.getDepartment();
                 i++;
+                try{  
+            	    Class.forName("com.mysql.cj.jdbc.Driver");  
+            	    Connection con=DriverManager.getConnection(  
+            	    "jdbc:mysql://localhost:3306/MVC_Project","gagan","password");  
+            	    Statement stmt=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            	       ResultSet.CONCUR_READ_ONLY);  
+            	    stmt.executeUpdate("insert into Employee values(\""+user.getFirstname()+"\",\""+user.getLastname()+"\",\""+user.getID()+"\",\""+user.getDepartment()+"\");");
+//            	    stmt.executeUpdate("insert into Employee values(\"Vani\",\"TP\",\"EMP_3\",\"EC\");");
+            	    con.close();  
+            	    }catch(Exception e){ System.out.println(e);}
             }
             bufferedWriter.write(save_data);
             bufferedWriter.newLine();
@@ -37,10 +48,31 @@ public class Database {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    	
     }
 
     // reads user from database file
     public Object[] loadUsers(File file) {
+    	String first_name,last_name,emp_id,dept_name;
+    	try{  
+    	    Class.forName("com.mysql.cj.jdbc.Driver");  
+    	    Connection con=DriverManager.getConnection(  
+    	    "jdbc:mysql://localhost:3306/MVC_Project","gagan","password");  
+    	    Statement stmt=con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+    	       ResultSet.CONCUR_READ_ONLY);  
+    	    ResultSet rs=stmt.executeQuery("select * from Employee");
+    	    while(rs.next()) {
+    	    	first_name = rs.getString(1);
+    	    	last_name  = rs.getString(2);
+    	    	emp_id  =  rs.getString(3);
+    	    	dept_name = rs.getString(4);
+    	    	System.out.println(first_name+last_name+emp_id+dept_name);
+    	    }
+    	    
+    	    con.close();  
+    	    }catch(Exception e){ System.out.println(e);}
+    	
+    	
         Object[] objects;
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
@@ -52,6 +84,7 @@ public class Database {
             e.printStackTrace();
         }
         return null;
+    	
     }
 
 
